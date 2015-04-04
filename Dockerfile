@@ -30,6 +30,7 @@ RUN cd /var/www/sharelatex/web; \
 # Install Nginx as a reverse proxy
 RUN apt-get install -y nginx;
 RUN rm /etc/nginx/sites-enabled/default
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt -subj "/C=UK/ST=Warwickshire/L=Leamington/O=OrgName/OU=IT Department/CN=example.com"
 ADD nginx/nginx.conf /etc/nginx/nginx.conf
 ADD nginx/sharelatex.conf /etc/nginx/sites-enabled/sharelatex.conf
 
